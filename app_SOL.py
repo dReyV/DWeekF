@@ -14,7 +14,7 @@ df = pd.read_csv('aggr.csv', parse_dates=['Entry time'])
 
 from sqlalchemy import create_engine
 
-engine = create_engine("postgresql://"+db_user+":"+pssw+"t@rds-url/postgres")
+engine = create_engine("postgresql://"+db_user+":"+pssw+"@"+db_host+"/postgres")
 df = pd.read_sql("SELECT * from trades", engine.connect(), parse_dates=('Entry time',))
 
 
