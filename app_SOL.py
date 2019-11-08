@@ -10,17 +10,17 @@ passw = os.environ.get('DB_USER_PASSWORD')
 db_user = os.environ.get('DB_USER')
 db_host = os.environ.get('DB_HOST')
 
-print(passw)
-print(db_user)
-print(db_host)
+#print(passw)
+#print(db_user)
+#print(db_host)
 
 df = pd.read_csv('aggr.csv', parse_dates=['Entry time'])
 
-from sqlalchemy import create_engine
-cred = "postgresql://"+db_user+":"+passw+"@"+db_host+"/postgres"
-print(cred)
-engine = create_engine(cred)
-df = pd.read_sql("SELECT * from trades", engine.connect(), parse_dates=('Entry time',))
+#from sqlalchemy import create_engine
+#cred = "postgresql://"+db_user+":"+passw+"@"+db_host+"/postgres"
+#print(cred)
+#engine = create_engine(cred)
+#df = pd.read_sql("SELECT * from trades", engine.connect(), parse_dates=('Entry time',))
 
 
 df['YearMonth']=pd.DatetimeIndex(df['Entry time']).year.astype(str) + '/' + pd.DatetimeIndex(df['Entry time']).month.astype(str)
