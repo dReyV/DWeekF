@@ -4,8 +4,20 @@ import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objects as go
 import dash_table
+import os
+
+passw = os.environ.get('DB_USER_PASSWORD')
+db_user = os.environ.get('DB_USER')
+db_host = os.environ.get('DB_HOST')
 
 df = pd.read_csv('aggr.csv', parse_dates=['Entry time'])
+
+from sqlalchemy import create_engine
+
+engine = create_engine("postgresql://"+db_user+":"+pssw+"t@rds-url/postgres")
+df = pd.read_sql("SELECT * from trades", engine.connect(), parse_dates=('Entry time',))
+
+
 df['YearMonth']=pd.DatetimeIndex(df['Entry time']).year.astype(str) + '/' + pd.DatetimeIndex(df['Entry time']).month.astype(str)
 
 
