@@ -10,6 +10,10 @@ passw = os.environ.get('DB_USER_PASSWORD')
 db_user = os.environ.get('DB_USER')
 db_host = os.environ.get('DB_HOST')
 
+print(passw)
+print(db_user)
+print(db_host)
+
 df = pd.read_csv('aggr.csv', parse_dates=['Entry time'])
 
 from sqlalchemy import create_engine
